@@ -1,0 +1,72 @@
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/payment.css')
+    link(rel='stylesheet', href='/node_modules/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href="/node_modules/noty/lib/themes/bootstrap-v3.css")
+    link(rel='stylesheet', href="/node_modules/noty/lib/noty.css")
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+  body
+    .container
+      .panel.mb-4.col-md-3
+        .panel-body
+          table.table.table-striped
+            thead
+              tr
+                th User
+                th Balance
+            tbody
+              tr
+                td.me Me
+                td.mamt 100
+              tr
+                td.alisha Alisha
+                td.aamt 0
+      .col-md-offset-1.col-md-4
+        .panel.panel-default
+          .panel-heading.h4  Payment Portal 
+          .panel-body.text-center
+            .overlay
+              i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate(style="font-size:50px;color:white") 
+            form
+              .form-group
+                label(for='to') Payee
+                select#to.form-control
+                  option Alisha
+              .form-group.mx-sm-3.mb-2
+                label(for='amount') Amount
+                input#amount.form-control(type='number', placeholder='Amount')
+            .payments
+              .button#debit.active
+                | Debit
+                svg.svg-debit(viewbox='0 0 32 23')
+                  path.svg-debit-card(d='M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z')
+                  path.svg-debit-data(d='M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z')
+                  path.svg-debit-sign(d='M2.993 9h26v3h-26v-3z')
+                  path.svg-debit-read(d='M-.007 3h32v3h-32v-3z')
+              .button#ethereum
+                | Ethereum
+                svg.svg-ether(viewbox='0 0 256 417', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', preserveaspectratio='xMidYMid')
+                  g
+                    polygon(fill='#343434', points='127.9611 0 125.1661 9.5 125.1661 285.168 127.9611 287.958 255.9231 212.32')
+                    polygon(fill='#8C8C8C', points='127.962 0 0 212.32 127.962 287.959 127.962 154.158')
+                    polygon(fill='#3C3C3B', points='127.9611 312.1866 126.3861 314.1066 126.3861 412.3056 127.9611 416.9066 255.9991 236.5866')
+                    polygon(fill='#8C8C8C', points='127.962 416.9052 127.962 312.1852 0 236.5852')
+                    polygon(fill='#141414', points='127.9611 287.9577 255.9211 212.3207 127.9611 154.1587')
+                    polygon(fill='#393939', points='0.0009 212.3208 127.9609 287.9578 127.9609 154.1588')
+          .panel-footer.text-center
+            button.btn.btn-success#pay(type='submit') Pay
+    
+    script(src="/node_modules/jquery/dist/jquery.min.js")
+    script(src="/node_modules/popper.js/dist/umd/popper.js")
+    script(src="/node_modules/bootstrap/dist/js/bootstrap.js")
+    script(src="https://use.fontawesome.com/releases/v5.0.6/js/all.js")
+    script(src="/node_modules/noty/lib/noty.js")
+    if payment.pay
+      script(src="/public/javascripts/pay.js")
+    else if payment.wrongpay
+      script(src="/public/javascripts/wrongpay.js")
+    else if payment.paytoplay
+      script(src="/public/javascripts/paytoplay.js")
+    else
+      script(src="/public/javascripts/pay.js")
